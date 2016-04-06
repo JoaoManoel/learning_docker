@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nginx:
+    build: nginx/
+  django:
+    build: django/
+    ports:
+      - "8080:9000"
+    depends_on:
+      - nginx
+  gunicorn:
+    build: gunicorn/
+    depends_on:
+      - django
